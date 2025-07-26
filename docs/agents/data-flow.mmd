@@ -1,0 +1,26 @@
+graph LR
+    subgraph "Input Layer"
+        UD[User Data]
+        RD[Request Data]
+    end
+    
+    subgraph "Processing Layer"
+        HSS[HSA State Store]
+        AG[Agent Processing]
+        RV[Rule Validation]
+    end
+    
+    subgraph "Output Layer"
+        RS[Response State]
+        MS[Messages]
+        CR[Compliance Report]
+    end
+    
+    UD --> HSS
+    RD --> HSS
+    HSS --> AG
+    AG --> RV
+    RV --> AG
+    AG --> RS
+    AG --> MS
+    AG --> CR

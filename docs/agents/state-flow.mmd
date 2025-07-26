@@ -1,0 +1,19 @@
+graph TD
+    A[Initial State] --> B{Request Type}
+    B -->|Contribution| C[Eligibility Check]
+    B -->|Distribution| C
+    
+    C --> D{Eligible?}
+    D -->|No| E[End - Not Eligible]
+    D -->|Yes| F{Request Type}
+    
+    F -->|Contribution| G[Contribution Processing]
+    F -->|Distribution| H[Distribution Processing]
+    
+    G --> I[Compliance Check]
+    H --> I
+    
+    I --> J{Compliant?}
+    J -->|Violation| K[End - Violation]
+    J -->|Warning| L[End - Warning]
+    J -->|Compliant| M[End - Success]

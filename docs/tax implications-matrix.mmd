@@ -1,0 +1,12 @@
+graph LR
+    A[Distribution Type] --> B[Qualified Medical]
+    A --> C[Non-Qualified Under 65]
+    A --> D[Non-Qualified Over 65]
+    
+    B --> E[Tax: 0%<br/>Penalty: 0%]
+    C --> F[Tax: Marginal Rate<br/>Penalty: 20%]
+    D --> G[Tax: Marginal Rate<br/>Penalty: 0%]
+    
+    style E fill:#90EE90
+    style F fill:#FFB6C1
+    style G fill:#FFE4B5

@@ -1,0 +1,23 @@
+sequenceDiagram
+    participant U as User
+    participant WF as Workflow
+    participant EA as Eligibility Agent
+    participant CA as Contribution Agent
+    participant DA as Distribution Agent
+    participant CPA as Compliance Agent
+    
+    U->>WF: HSA Request
+    WF->>EA: Check Eligibility
+    EA-->>WF: Eligibility Result
+    
+    alt Eligible for Contribution
+        WF->>CA: Process Contribution
+        CA-->>WF: Contribution Result
+    else Eligible for Distribution
+        WF->>DA: Process Distribution
+        DA-->>WF: Distribution Result
+    end
+    
+    WF->>CPA: Final Compliance Check
+    CPA-->>WF: Compliance Result
+    WF-->>U: Final Response

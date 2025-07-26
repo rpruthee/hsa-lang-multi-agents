@@ -1,0 +1,14 @@
+[tool.poetry]
+name = "hsa-multi-agent-system"
+version = "0.1.0"
+description = "A multi-agent system for managing Health Savings Accounts (HSA) based on IRS rules."
+authors = ["Your Name <your.email@example.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+# Add other dependencies here as needed
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

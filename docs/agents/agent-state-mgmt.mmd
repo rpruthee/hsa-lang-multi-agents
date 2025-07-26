@@ -1,0 +1,12 @@
+stateDiagram-v2
+    [*] --> Validating
+    Validating --> Processing : Valid Request
+    Validating --> Error : Invalid Request
+    Processing --> QualifiedExpense : Check Expense Type
+    Processing --> NonQualified : Non-Medical Expense
+    QualifiedExpense --> TaxFree : Medical Expense
+    NonQualified --> TaxCalculation : Calculate Tax & Penalty
+    TaxCalculation --> Complete : Update State
+    TaxFree --> Complete : Update State
+    Complete --> [*]
+    Error --> [*]

@@ -1,0 +1,20 @@
+graph TD
+    A[Agent Processing] --> B{Error Occurred?}
+    B -->|No| C[Continue Processing]
+    B -->|Yes| D[Capture Error]
+    
+    D --> E{Error Type}
+    E -->|Validation| F[Add to Validation Errors]
+    E -->|Business Rule| G[Add to Business Errors]
+    E -->|System| H[Add to System Errors]
+    
+    F --> I[Update State with Errors]
+    G --> I
+    H --> I
+    
+    I --> J[Log Error Message]
+    J --> K[Continue to Next Agent]
+    
+    C --> L[Success Path]
+    L --> M[Update State with Success]
+    M --> N[Continue to Next Agent]

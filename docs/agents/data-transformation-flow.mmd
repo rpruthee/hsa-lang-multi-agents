@@ -1,0 +1,27 @@
+graph TD
+    A[Raw User Input] --> B[Input Validation]
+    B --> C[Schema Normalization]
+    C --> D[Business Rule Application]
+    D --> E[State Transformation]
+    E --> F[Agent Processing]
+    F --> G[Result Aggregation]
+    G --> H[Output Formatting]
+    H --> I[Response Generation]
+    
+    subgraph "Validation Layer"
+        B --> B1[Type Checking]
+        B --> B2[Range Validation]
+        B --> B3[Format Validation]
+    end
+    
+    subgraph "Business Layer"
+        D --> D1[IRS Rule Application]
+        D --> D2[Eligibility Checks]
+        D --> D3[Limit Calculations]
+    end
+    
+    subgraph "Output Layer"
+        H --> H1[Success Response]
+        H --> H2[Error Response]
+        H --> H3[Warning Response]
+    end

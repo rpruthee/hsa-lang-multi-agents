@@ -1,0 +1,15 @@
+sequenceDiagram
+    participant USER as User
+    participant STATE as HSA State
+    participant EA as Eligibility Agent
+    participant CA as Contribution Agent
+    participant MSG as Message System
+    
+    USER->>STATE: Initial Request Data
+    STATE->>EA: State with User Data
+    EA->>MSG: Eligibility Message
+    EA->>STATE: Updated State
+    STATE->>CA: State with Eligibility
+    CA->>MSG: Contribution Message
+    CA->>STATE: Final Updated State
+    STATE->>USER: Complete Response

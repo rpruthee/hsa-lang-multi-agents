@@ -1,0 +1,14 @@
+graph TD
+    A[Distribution Request] --> B{Amount > 0?}
+    B -->|No| C[Invalid: Amount must be positive]
+    B -->|Yes| D{Amount <= Balance?}
+    D -->|No| E[Invalid: Insufficient funds]
+    D -->|Yes| F{Qualified Medical Expense?}
+    F -->|Yes| G[Tax-Free Distribution]
+    F -->|No| H{Age >= 65?}
+    H -->|Yes| I[Income Tax Only]
+    H -->|No| J[Income Tax + 20% Penalty]
+    
+    G --> K[Final State Update]
+    I --> K
+    J --> K

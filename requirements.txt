@@ -1,0 +1,9 @@
+numpy
+pandas
+pytest
+networkx
+langgraph
+langchain
+langchain-core
+typing-extensions
+pydantic

@@ -1,0 +1,35 @@
+sequenceDiagram
+    participant WF as Workflow
+    participant EA as Eligibility Agent
+    participant CA as Contribution Agent
+    participant DA as Distribution Agent
+    participant CPA as Compliance Agent
+    participant IR as IRS Rules
+    participant STATE as HSA State
+    
+    WF->>EA: Process Request
+    EA->>IR: Check Eligibility Rules
+    IR-->>EA: Eligibility Result
+    EA->>STATE: Update Eligibility
+    EA-->>WF: Eligibility Complete
+    
+    alt Contribution Request
+        WF->>CA: Process Contribution
+        CA->>IR: Check Contribution Limits
+        IR-->>CA: Limit Information
+        CA->>STATE: Update Contribution State
+        CA-->>WF: Contribution Complete
+    else Distribution Request
+        WF->>DA: Process Distribution
+        DA->>IR: Check Qualified Expenses
+        IR-->>DA: Expense Classification
+        DA->>STATE: Update Distribution State
+        DA-->>WF: Distribution Complete
+    end
+    
+    WF->>CPA: Final Compliance Check
+    CPA->>STATE: Read All States
+    CPA->>IR: Verify Compliance
+    IR-->>CPA: Compliance Status
+    CPA->>STATE: Update Final State
+    CPA-->>WF: Process Complete

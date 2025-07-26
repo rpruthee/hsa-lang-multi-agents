@@ -1,0 +1,20 @@
+graph LR
+    subgraph "State Evolution"
+        S1[Initial State] --> S2[After Eligibility]
+        S2 --> S3[After Contribution/Distribution]
+        S3 --> S4[After Compliance]
+    end
+    
+    subgraph "State Fields"
+        S1 --> F1[user_data, messages, workflow_status]
+        S2 --> F2[+ is_eligible, eligibility_reason]
+        S3 --> F3[+ contribution/distribution fields]
+        S4 --> F4[+ compliance_check_result]
+    end
+    
+    subgraph "State Persistence"
+        S1 --> P1[State Snapshot 1]
+        S2 --> P2[State Snapshot 2]
+        S3 --> P3[State Snapshot 3]
+        S4 --> P4[Final State]
+    end

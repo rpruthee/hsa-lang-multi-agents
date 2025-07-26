@@ -1,0 +1,39 @@
+graph TB
+    subgraph "Core Components"
+        WF[Workflow Engine]
+        SM[State Manager]
+        MM[Message Manager]
+    end
+    
+    subgraph "Business Logic"
+        EL[Eligibility Logic]
+        CL[Contribution Logic]
+        DL[Distribution Logic]
+        CPL[Compliance Logic]
+    end
+    
+    subgraph "Data & Rules"
+        IR[IRS Rules]
+        VR[Validation Rules]
+        TR[Tax Rules]
+    end
+    
+    WF --> SM
+    WF --> MM
+    SM --> EL
+    SM --> CL
+    SM --> DL
+    SM --> CPL
+    
+    EL --> IR
+    CL --> IR
+    DL --> IR
+    CPL --> IR
+    
+    EL --> VR
+    CL --> VR
+    DL --> VR
+    CPL --> VR
+    
+    DL --> TR
+    CPL --> TR

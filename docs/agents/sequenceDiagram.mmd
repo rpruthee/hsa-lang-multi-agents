@@ -1,0 +1,14 @@
+sequenceDiagram
+    participant S as HSA State
+    participant DA as Distribution Agent
+    participant IR as IRS Rules
+    participant C as Compliance Agent
+    
+    S->>DA: Distribution Request
+    DA->>DA: Validate Amount > 0
+    DA->>DA: Check Account Balance
+    DA->>IR: Validate Qualified Expense
+    IR-->>DA: Expense Classification
+    DA->>DA: Calculate Tax Implications
+    DA->>S: Update State with Results
+    DA->>C: Forward to Compliance
