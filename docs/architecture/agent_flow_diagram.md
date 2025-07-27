@@ -22,40 +22,70 @@ This document provides a visual representation of the flow of information betwee
 
 *Note: Replace `path/to/agent_flow_diagram.png` with the actual path to the diagram image file.*
 
-## 3. Add Agent Flow Documentation
-
-```markdown
 # HSA Agent Flow Documentation
 
-## Agent Interaction Flow
+## Overview
+This document illustrates the flow and interactions between different agents in the HSA Multi-Agent System, showing how agents communicate, process data, and coordinate to achieve HSA management goals.
+
+## Main Agent Flow
 
 ```mermaid
 graph TB
-    subgraph "Request Processing Flow"
-        START([User Request]) --> ENTRY[Entry Point]
-        ENTRY --> EA[Eligibility Agent]
-        
-        EA --> ROUTE{Route Decision}
-        ROUTE -->|Contribution| CA[Contribution Agent]
-        ROUTE -->|Distribution| DA[Distribution Agent]
-        ROUTE -->|Ineligible| END1([End - Ineligible])
-        
-        CA --> CPA[Compliance Agent]
-        DA --> CPA
-        CPA --> END2([End - Complete])
+    subgraph "Input Layer"
+        UR[User Request]
+        UD[User Data]
     end
     
-    subgraph "State Updates"
-        EA --> STATE1[Update Eligibility State]
-        CA --> STATE2[Update Contribution State]
-        DA --> STATE3[Update Distribution State]
-        CPA --> STATE4[Update Compliance State]
+    subgraph "Workflow Orchestration"
+        WF[HSA Workflow]
+        STATE[HSA State]
     end
     
-    subgraph "Message Flow"
-        EA --> MSG1[Eligibility Message]
-        CA --> MSG2[Contribution Message]
-        DA --> MSG3[Distribution Message]
-        CPA --> MSG4[Compliance Message]
+    subgraph "Agent Processing Layer"
+        EA[Eligibility Agent]
+        CA[Contribution Agent]
+        DA[Distribution Agent]
+        CPA[Compliance Agent]
     end
-```
+    
+    subgraph "Utility Layer"
+        IR[IRS Rules]
+        VR[Validation Rules]
+        MS[Message System]
+    end
+    
+    subgraph "Output Layer"
+        RESULT[Processing Result]
+        AUDIT[Audit Log]
+    end
+    
+    UR --> WF
+    UD --> STATE
+    WF --> STATE
+    
+    STATE --> EA
+    EA --> STATE
+    STATE --> CA
+    STATE --> DA
+    CA --> STATE
+    DA --> STATE
+    STATE --> CPA
+    CPA --> STATE
+    
+    EA --> IR
+    CA --> IR
+    DA --> IR
+    CPA --> IR
+    
+    EA --> VR
+    CA --> VR
+    DA --> VR
+    CPA --> VR
+    
+    EA --> MS
+    CA --> MS
+    DA --> MS
+    CPA --> MS
+    
+    STATE --> RESULT
+    CPA --> AUDIT
