@@ -37,9 +37,6 @@ The HSA Multi-Agent System is designed to facilitate the management of Health Sa
 ## Conclusion
 The HSA Multi-Agent System is a modular and compliant solution for managing Health Savings Accounts. By leveraging specialized agents and a structured workflow, the system ensures adherence to IRS regulations while providing a streamlined user experience.
 
-## 2. Add System Architecture Documentation
-
-```markdown
 # HSA Multi-Agent System Architecture
 
 ## System Overview
@@ -100,4 +97,3 @@ graph TB
     CA --> MS
     DA --> MS
     CPA --> MS
-`
